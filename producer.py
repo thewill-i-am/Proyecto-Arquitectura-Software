@@ -65,7 +65,7 @@ class ObjectDetector:
 class FrameProducer:
     def __init__(self, kafka_server, topic, model_path, prototxt_path):
         self.producer = KafkaProducer(bootstrap_servers=kafka_server)
-        self.video_capture = cv2.VideoCapture(1)
+        self.video_capture = cv2.VideoCapture(0)
         self.topic = topic
         self.capture_thread = None
         self.send_thread = None

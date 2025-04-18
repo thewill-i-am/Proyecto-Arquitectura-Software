@@ -1,3 +1,9 @@
 kafka-python
 opencv-python
 Flask
+
+zkserver start
+source venv/bin/activate
+python consumer.py
+python consumer.py
+sudo /opt/Kafka/kafka_2.11-2.1.1/bin/kafka-server-start.sh /opt/Kafka/kafka_2.11-2.1.1/config/server.properties
