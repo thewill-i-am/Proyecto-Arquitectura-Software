@@ -1,1 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
 venv/
+.env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Pytest cache
+.pytest_cache/
+
+# VSCode config (si usas VSCode)
+.vscode/
+
+# Archivos de entorno o configuración local
+.env
+*.env
+
+# Archivos temporales
+*.log
+*.tmp
+*.swp
+.DS_Store
