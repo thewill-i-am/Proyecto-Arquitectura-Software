@@ -3,8 +3,8 @@ import time
 from messaging.kafka_connection import KafkaConnection
 
 class FrameConsumer:
-    def __init__(self, topic: str):
-        self.consumer = KafkaConnection.consumer(topic)
+    def __init__(self, topic: str, group_id: str = "video-consumer-group"):
+        self.consumer = KafkaConnection.consumer(topic, group_id)
 
     def __iter__(self):
         for msg in self.consumer:

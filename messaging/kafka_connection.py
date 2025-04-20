@@ -3,7 +3,6 @@ import config
 
 class KafkaConnection:
     _producer = None
-    _consumer = None
 
     @classmethod
     def producer(cls) -> KafkaProducer:
@@ -14,10 +13,12 @@ class KafkaConnection:
         return cls._producer
 
     @classmethod
-    def consumer(cls, topic: str) -> KafkaConsumer:
-        if cls._consumer is None:
-            cls._consumer = KafkaConsumer(
-                topic,
-                bootstrap_servers=config.Config.KAFKA_BOOTSTRAP
-            )
-        return cls._consumer
+    def consumer(cls, topic: str, group_id: str = None) -> KafkaConsumer:
+        return KafkaConsumer(
+            topic,
+            bootstrap_servers=config.Config.KAFKA_BOOTSTRAP,
+            group_id=group_id,
+            auto_offset_reset='latest',
+            enable_auto_commit=True,
+            consumer_timeout_ms=1000
+        )
