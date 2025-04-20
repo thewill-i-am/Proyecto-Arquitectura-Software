@@ -1,3 +1,5 @@
+import struct
+import time
 from messaging.kafka_connection import KafkaConnection
 
 class FrameConsumer:
@@ -6,4 +8,9 @@ class FrameConsumer:
 
     def __iter__(self):
         for msg in self.consumer:
-            yield msg.value
+            data = msg.value
+            ts_ns, = struct.unpack('!Q', data[:8])
+            t0 = ts_ns / 1e9
+            latency = (time.time() - t0) * 1000
+            print(f"[LATENCIA] {latency:.1f} ms")
+            yield data[8:]

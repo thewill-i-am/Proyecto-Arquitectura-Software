@@ -1,3 +1,4 @@
+import time
 from flask import Flask
 import threading
 import cv2
@@ -20,8 +21,9 @@ def capture_loop():
         ret, frame = cap.read()
         if not ret:
             break
+        t0 = time.time()
         processed = detector.detect(frame)
-        buffer.put(processed)
+        buffer.put((processed, t0))
 
 threading.Thread(target=capture_loop, daemon=True).start()
 
@@ -29,8 +31,8 @@ producer = FrameProducer()
 
 def send_loop():
     while True:
-        frame = buffer.get()
-        producer.send(frame)
+        item = buffer.get()
+        producer.send(item)
 
 threading.Thread(target=send_loop, daemon=True).start()
 
