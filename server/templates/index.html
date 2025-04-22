@@ -1,0 +1,25 @@
+<!-- server/templates/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Streaming con Kafka</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header>
+    <h1 class="header-title">Video Streaming con Kafka</h1>
+  </header>
+  <main id="video-container">
+    <div id="video-wrapper">
+      <img id="video" src="{{ url_for('video') }}" alt="Transmisión en vivo">
+    </div>
+  </main>
+  <footer>
+    &copy; 2025 • Proyecto de Transmisión en Tiempo Real
+  </footer>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
