@@ -5,17 +5,14 @@
 
 ## 1. Requerimientos del negocio
 
-- **Objetivo del negocio:**  
-  Proveer una solución de censura selectiva de elementos de un video en tiempo real, que permita: la captura, procesamiento y visualización de video, integrando capacidades avanzadas de detección de objetos y su censura en tiempo real. Esto con el fin de ser integrado en software de vigilancia, control de contenido, análisis de tráfico o entornos donde se requiera censurar ciertos elementos sensibles.
-
-- **Valor agregado:**  
-  La integración de tecnologías como Kafka, OpenCV y Flask permite un procesamiento distribuido y escalable, reduciendo la latencia en la transmisión y habilitando la toma de decisiones en tiempo real sobre el contenido del video, especialmente en lo relacionado con la censura de objetos.
-
-- **Ventaja competitiva:**  
-  El sistema destaca por su capacidad de detectar y censurar de forma inmediata regiones específicas de un video (aplicando desenfoque). Posee arquitectura modular, lo que facilitará la integración con otros sistemas. Finalmente, su diseño es escalable para preveer incrementos en la demanda.
-
-- **Impacto en el negocio:**  
-  Con este producto se optimiza la gestión del video en vivo, se mejora el control del contenido aplicando el desenfoque y se posibilita la implementación de soluciones de análisis avanzado, generando oportunidades en diversos sectores industriales y comerciales.
+1. **Proveer análisis visual automatizado en tiempo real**
+El sistema debe permitir detectar y analizar objetos, personas o gestos en tiempo real desde una fuente de video, con el fin de automatizar procesos de monitoreo, vigilancia, interacción o análisis visual.
+2. **Soportar despliegues multiplataforma**: El sistema debe ser portable y ejecutarse en diferentes entornos operativos (Linux, Windows, MacOS), tanto en entornos locales como en la nube o contenedores, para adaptarse a diversos escenarios de uso.
+3. **Garantizar transmisión continua y estable de video**: El sistema debe transmitir imágenes procesadas en tiempo real sin interrupciones perceptibles para el usuario final, asegurando una experiencia fluida y continua.
+4. **Permitir visualización y consulta de métricas de procesamiento**: El sistema debe registrar y exponer indicadores clave como FPS (frames por segundo), número de objetos detectados y latencia de procesamiento, permitiendo su análisis y ajuste operativo.
+5. **Asegurar protección de acceso y privacidad de la información**: El sistema debe implementar mecanismos de seguridad como autenticación, autorización y control de accesos para prevenir el uso indebido del servicio o la exposición de datos sensibles.
+6. **Escalar horizontalmente bajo demanda**: El sistema debe ser capaz de escalar mediante la adición de nuevas instancias de procesamiento (consumidores Kafka) para soportar aumentos de carga sin degradar el rendimiento.
+7. **Servir como base para pruebas, demostraciones y proyectos de investigación**: El sistema debe estar diseñado de forma modular y extensible para facilitar su adaptación en ambientes educativos, experimentales o de investigación aplicada.
 
 ---
 
@@ -78,30 +75,14 @@
 
 ---
 
+
 ## 3. Requerimientos No-funcionales o de calidad
+Este apartado presenta los requerimientos no funcionales utilizando la estructura de escenarios de calidad propuesta por Bass, Clements y Kazman (2021):
 
-- **Rendimiento y latencia:**  
-  - El sistema debe procesar y transmitir los frames en tiempo real, minimizando la latencia entre captura, procesamiento y visualización.  
-  - Se debe establecer un límite máximo de tiempo para el procesamiento de cada frame (por ejemplo, menos de 50-100 milisegundos, a definir según pruebas de rendimiento).
+| Atributo               | Fuente                             | Estímulo                                                                | Entorno                                        | Artefacto                                                   | Respuesta                                                                 | Métrica                                                                                   |
+|------------------------|------------------------------------|-------------------------------------------------------------------------|------------------------------------------------|--------------------------------------------------------------|---------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| **Escalabilidad**      | Aumento de usuarios concurrentes   | Peticiones simultáneas de procesamiento de imágenes                    | Durante picos de transmisión en vivo           | Backend de procesamiento y servidor de streaming             | Escala automáticamente los recursos de cómputo                          | Mantener <70% de uso de CPU y latencia <100 ms            |
+| **Compatibilidad**     | Usuario o desarrollador             | Ejecución en Windows, Linux o MacOS                                     | En fase de despliegue                          | Código fuente y entorno de ejecución                         | El sistema se ejecuta sin modificación del código                       | Funcionalidad completa en el 100% de entornos soportados con error ≤ 5%                   |
+| **Rendimiento**        | Usuario final                       | Solicita visualización y procesamiento en tiempo real                   | Durante operación continua                     | Captura, procesamiento y transmisión de imágenes             | Procesamiento completo y transmisión con baja latencia                  | Tiempo total de respuesta <100 ms en el 95% de los casos                                 |
 
-- **Escalabilidad:**  
-  - La arquitectura basada en Kafka permite escalar horizontalmente tanto el productor como el consumidor para manejar incrementos en la carga.
 
-- **Confiabilidad y disponibilidad:**    
-  - Se deben implementar logs y alertas al detectar incidentes rápidamente.
-
-- **Seguridad:**  
-  - Asegurar la comunicación entre componentes (por ejemplo, utilizando conexiones seguras o autenticación en Kafka y Flask). 
-
-- **Mantenibilidad y modularidad:**  
-  - El código debe estar bien documentado y estructurado, siguiendo estándares de programación y buenas prácticas.
-
-- **Compatibilidad y portabilidad:**  
-  - La solución debe ser compatible con diferentes sistemas operativos y navegadores modernos.  
-  - La integración con tecnologías de terceros (Kafka, OpenCV, Flask) debe permitir la actualización o sustitución de componentes sin afectar el funcionamiento general.
-
-- **Usabilidad:**    
-  - Proveer feedback visual en la interfaz en caso de detecciones.
-
-- **Monitorización y logging:**    
-  - Registrar logs de actividad y de errores para facilitar la identificación y solución de incidencias.
