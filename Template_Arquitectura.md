@@ -128,10 +128,10 @@ El sistema se organiza en **capas modulares** que separan claramente la configur
 
 ## 6.2 Diagramas de Componentes
 ### Diagrama de Contexto
-<img src="../diagrama componentes 1.jpeg" alt="Diagrama1" />
+<img src="./diagrama componentes 1.png" alt="Diagrama1" />
 
 ### Diagrama de componentes
-<img src="../diagrama componentes 2.jpeg" alt="Diagrama1" />
+<img src="./diagrama componentes 2.png" alt="Diagrama1" />
 
 ## 6.3 Diseño de la Base de Datos
 No cuenta con Base de datos
